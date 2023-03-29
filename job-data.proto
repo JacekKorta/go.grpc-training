@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option go_package = "./jobs";
+
+message StandardRequest {
+    string category = 1;
+    string exp_level = 2;
+}
+
+message CountResponse {
+    int32 total_offer_count = 1;
+}
+
+
+message SalaryResponse {
+    int64 min = 1;
+    int64 max = 2;
+    float avg = 3;
+}
+
+service JobDataSrv {
+    rpc Count(StandardRequest) returns (CountResponse) {}
+
+    rpc GetSalaryDataBySeniority(StandardRequest) returns (SalaryResponse) {}
+}
